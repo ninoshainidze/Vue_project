@@ -10,35 +10,44 @@
         </form>
     </div>
 </template>
+
 <script>
+
+
+
 var userAuthenthification = false
-import store from './store'
+
+import store from '../js/store'
+
 var json_example = {
-                    'users':
-                    [
-                            {
-                                "userName":"qwert", 
-                                "password":"qwert"
-                            }, 
-                            {
-                                "userName":"nino", 
-                                "password":"nino"
-                            },
-                            {
-                                "userName":"lilo", 
-                                "password":"lilo"
-                            }
-                    ]
-                    }
+    'users':
+    [
+        {
+            "userName":"qwert", 
+            "password":"qwert"
+        }, 
+        {
+            "userName":"nino", 
+            "password":"nino"
+        },
+        {
+            "userName":"lilo", 
+            "password":"lilo"
+        }
+    ]
+}
+
 export default {
     name:'Login',
     data()
     {
         return {
-            username:null,
-            password:null}
+            username:'',
+            password:''
+        }
     },
     methods:{
+        
         login(event)
         { 
             for(const  user in json_example["users"])
@@ -49,14 +58,18 @@ export default {
                     // console.log(this.password)
                     store.getters["auth"]["loggedIn"] = true
                     userAuthenthification = true
+                    localStorage.setItem("isLogin", true)
+                    console.log(localStorage.getItem("isLogin"))
                 }   
             }
-
             if(!userAuthenthification) window.location.reload() 
             else this.$router.push('dashboard')
             event.preventDefault()
-        }
-    }   
-}
+        },
 
+        
+    }
+        
+
+}
 </script>

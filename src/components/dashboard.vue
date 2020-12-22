@@ -1,17 +1,20 @@
 <template>
     <div>
         <navbar/>
-<h1>DashBoard</h1>
+        <h1>DashBoard</h1>
     </div>
 </template>
+
 <script>
 import navbar from './navbar'
+import store from '../js/store'
+
+if(localStorage.getItem("isLogin")) store.getters["auth"]["loggedIn"] = true
 
 export default {
     name:'dashboard',
-    components: 
-    {
+    components: {
         navbar
     }
-    }
+}
 </script>

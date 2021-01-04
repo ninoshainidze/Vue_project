@@ -1,75 +1,89 @@
 <template>
     <div>
         <img alt="Vue logo" src="../assets/logo.png">
-        <h1>Welcome!</h1>
-        <br><br><br>
+        <h1>Welcome!</h1><br>
         <form @submit="login">
-            <input type="text" placeholder="Enter Username" v-model="username"><br><br>
-            <input type="text" placeholder="Enter Password" v-model="password"> <br><br>
-            <button type="submit">Login</button>
+            <div class="form-group">
+                <label>username</label><br>
+                <input type="text" v-model="username" class="form-control">
+                <span v-if="!$v.username.required && $v.username.$dirty" class="text-danger">username is required</span>
+                <span v-if="(!$v.username.minLength || !$v.username.maxLength) && $v.username.$dirty" class="text-danger">username must be between {{ $v.username.$params.minLength.min }} and {{ $v.username.$params.maxLength.max }} characters</span>
+            </div><br>
+
+            <div class="form-group">
+                <label>password</label><br>
+                <input type="password" v-model="password" class="form-control clearform">
+                <span v-if="!$v.password.required && $v.password.$dirty" class="text-danger">password is required</span>
+                <span v-if="(!$v.password.minLength || !$v.password.maxLength) && $v.password.$dirty" class="text-danger">password must be between {{ $v.password.$params.minLength.min }} and {{ $v.password.$params.maxLength.max }} characters</span>
+            </div><br>
+
+            <div class="incorrect" style="display: none; color: red;">username or password is incorrect</div><br>
+
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
 </template>
 
 <script>
 
+import { required,  minLength, maxLength } from 'vuelidate/lib/validators'
 
+import store from '.././store'
 
-var userAuthenthification = false
-
-import store from '../js/store'
-
-var json_example = {
-    'users':
-    [
-        {
-            "userName":"qwert", 
-            "password":"qwert"
-        }, 
-        {
-            "userName":"nino", 
-            "password":"nino"
-        },
-        {
-            "userName":"lilo", 
-            "password":"lilo"
-        }
-    ]
-}
+import json from '.././users.json'
 
 export default {
     name:'Login',
     data()
     {
         return {
+            errorMassage: 'username or password is incorect',
             username:'',
-            password:''
+            password:'',
+            userAuthenthification: false
+
+        }
+    },
+    validations:{
+        username:{
+            required,
+            maxLength: maxLength(6), 
+            minLength: minLength(3) 
+        
+        },
+        password:{
+            required,
+            maxLength: maxLength(6), 
+            minLength: minLength(3) 
         }
     },
     methods:{
         
-        login(event)
-        { 
-            for(const  user in json_example["users"])
+        login: function (event)
+        {   
+            for(const  user in json['users'])
             {
-             if(this.username == json_example["users"][user]["userName"] && this.password == json_example["users"][user]["password"])
+                
+             if(this.username == json['users'][user]["userName"] && this.password == json['users'][user]["password"])
                 {
-                    // console.log(this.username)
-                    // console.log(this.password)
                     store.getters["auth"]["loggedIn"] = true
-                    userAuthenthification = true
+                    this.userAuthenthification = true
                     localStorage.setItem("isLogin", true)
                     console.log(localStorage.getItem("isLogin"))
                 }   
             }
-            if(!userAuthenthification) window.location.reload() 
-            else this.$router.push('dashboard')
-            event.preventDefault()
-        },
+            if(this.$v.$anyError){
+                document.querySelector(".form-control").value = "";
+                document.querySelector(".clearform").value = "";
+            }
 
-        
+            else if(this.userAuthenthification && this.$v.$anyError)  {
+                document.querySelector(".incorrect").style.display = "block";
+            
+            } else if( this.userAuthenthification) this.$router.push('dashboard'); event.preventDefault()
+
+            this.$v.$touch();
+        }
     }
-        
-
 }
 </script>

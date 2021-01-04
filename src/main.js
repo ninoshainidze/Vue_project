@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './js'
-import store from './js/store'
+import router from './router.js'
+import store from './store.js'
+import Vuelidate from 'vuelidate'
 
-Vue.config.productionTip = false
+Vue.use(Vuelidate)
 
 new Vue({
   render: h => h(App),

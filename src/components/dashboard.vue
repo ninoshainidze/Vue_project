@@ -7,7 +7,7 @@
 
 <script>
 import navbar from './navbar'
-import store from '../js/store'
+import store from '.././store'
 
 if(localStorage.getItem("isLogin")) store.getters["auth"]["loggedIn"] = true
 

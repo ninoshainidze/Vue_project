@@ -5,13 +5,16 @@
 </template>
 
 <script>
+
 export default {
   name: 'App'
-
 }
 </script>
 
 <style>
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

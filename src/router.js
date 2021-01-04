@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import router from 'vue-router'
-import About from '../components/About'
-import Login from '../components/Login'
-import dashboard from '../components/dashboard'
-import service from '../components/service'
-import contact from '../components/contact'
-import store from '../js/store'
+import About from './components/About'
+import Login from './components/Login'
+import dashboard from './components/dashboard'
+import service from './components/service'
+import contact from './components/contact'
+import store from './store.js'
 
 Vue.use(router)
 

@@ -30,7 +30,8 @@ import { required,  minLength, maxLength } from 'vuelidate/lib/validators'
 
 import store from '.././store'
 
-import json from '.././users.json'
+//import json from '.././users.json'
+import users from '.././users.json'
 
 export default {
     name:'Login',
@@ -61,17 +62,26 @@ export default {
         
         login: function (event)
         {   
-            for(const  user in json['users'])
-            {
-                
-             if(this.username == json['users'][user]["userName"] && this.password == json['users'][user]["password"])
-                {
-                    store.getters["auth"]["loggedIn"] = true
-                    this.userAuthenthification = true
-                    localStorage.setItem("isLogin", true)
-                    console.log(localStorage.getItem("isLogin"))
-                }   
+            // for(const user in json['users'])
+            // {
+               
+            //  if(this.username == json['users'][user]["userName"] && this.password == json['users'][user]["password"])
+            //     {
+            //         store.getters["auth"]["loggedIn"] = true
+            //         this.userAuthenthification = true
+            //         localStorage.setItem("isLogin", true)
+            //         console.log(localStorage.getItem("isLogin"))
+            //     }   
+            // }
+
+            const user = users.find(user => user.userName === this.username && user.password === this.password);
+            if(user){
+                store.getters["auth"]["loggedIn"] = true
+                this.userAuthenthification = true
+                localStorage.setItem("isLogin", true)
+                console.log(localStorage.getItem("isLogin"))
             }
+
             if(this.$v.$anyError){
                 document.querySelector(".form-control").value = "";
                 document.querySelector(".clearform").value = "";
@@ -80,7 +90,7 @@ export default {
             else if(this.userAuthenthification && this.$v.$anyError)  {
                 document.querySelector(".incorrect").style.display = "block";
             
-            } else if( this.userAuthenthification) this.$router.push('dashboard'); event.preventDefault()
+            } else if( this.userAuthenthification) this.$router.push('dashboard'); event.preventDefault();
 
             this.$v.$touch();
         }

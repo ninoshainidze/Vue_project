@@ -1,0 +1,17 @@
+{
+    "users":
+    [
+        {
+            "userName":"qwert", 
+            "password":"qwert"
+        }, 
+        {
+            "userName":"nino", 
+            "password":"nino"
+        },
+        {
+            "userName":"lilo", 
+            "password":"lilo"
+        }
+    ]
+}

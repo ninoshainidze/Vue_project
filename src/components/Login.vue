@@ -2,34 +2,36 @@
     <div>
         <img alt="Vue logo" src="../assets/logo.png">
         <h1>Welcome!</h1><br>
-        <form @submit="login">
-            <div class="form-group">
-                <label>username</label><br>
-                <input type="text" v-model="username" class="form-control">
-                <span v-if="!$v.username.required && $v.username.$dirty" class="text-danger">username is required</span>
-                <span v-if="(!$v.username.minLength || !$v.username.maxLength) && $v.username.$dirty" class="text-danger">username must be between {{ $v.username.$params.minLength.min }} and {{ $v.username.$params.maxLength.max }} characters</span>
-            </div><br>
+        <ValidationObserver v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(onSubmit)">
+                <ValidationProvider name="Name" rules="required|alpha|max:5|min:3" v-slot="{ errors }">
+                    <div class="form-group">
+                        <label>username</label>
+                        <input type="text" class="form-control" v-model="username">
+                        <span>{{ errors[0] }}</span>
+                    </div>
+                </ValidationProvider>
 
-            <div class="form-group">
-                <label>password</label><br>
-                <input type="password" v-model="password" class="form-control clearform">
-                <span v-if="!$v.password.required && $v.password.$dirty" class="text-danger">password is required</span>
-                <span v-if="(!$v.password.minLength || !$v.password.maxLength) && $v.password.$dirty" class="text-danger">password must be between {{ $v.password.$params.minLength.min }} and {{ $v.password.$params.maxLength.max }} characters</span>
-            </div><br>
+                <ValidationProvider name="password" rules="required|max:5|min:2" v-slot="{ errors }">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" v-model="password">
+                        <span>{{ errors[0] }}</span>
+                    </div>
+                </ValidationProvider>
 
-            <div class="incorrect" style="display: none; color: red;">username or password is incorrect</div><br>
+                <div class="error">
+                    <span>{{ incorrectDataMassage }}</span>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+                <input type="submit" class="btn btn-primary mt-3" text="Submit">
+
+            </form>
+        </ValidationObserver>
     </div>
 </template>
 
 <script>
-
-import { required,  minLength, maxLength } from 'vuelidate/lib/validators'
-
-import store from '.././store'
-
 import json from '.././users.json'
 
 export default {
@@ -37,53 +39,39 @@ export default {
     data()
     {
         return {
-            errorMassage: 'username or password is incorect',
             username:'',
             password:'',
-            userAuthenthification: false
-
-        }
-    },
-    validations:{
-        username:{
-            required,
-            maxLength: maxLength(6), 
-            minLength: minLength(3) 
-        
-        },
-        password:{
-            required,
-            maxLength: maxLength(6), 
-            minLength: minLength(3) 
+            userAuthenthification: false,
+            incorrectDataMassage: ''
         }
     },
     methods:{
-        
-        login: function (event)
-        {   
-            for(const  user in json['users'])
-            {
-                
-             if(this.username == json['users'][user]["userName"] && this.password == json['users'][user]["password"])
+        onSubmit(){
+            this.$store.getters["auth"]["loggedIn"] = false
+            json.forEach(user => {
+                if(this.username == user["userName"] && this.password == user["password"])
                 {
-                    store.getters["auth"]["loggedIn"] = true
+                    this.$store.getters["auth"]["loggedIn"] = true
                     this.userAuthenthification = true
-                    localStorage.setItem("isLogin", true)
-                    console.log(localStorage.getItem("isLogin"))
-                }   
-            }
-            if(this.$v.$anyError){
-                document.querySelector(".form-control").value = "";
-                document.querySelector(".clearform").value = "";
-            }
-
-            else if(this.userAuthenthification && this.$v.$anyError)  {
-                document.querySelector(".incorrect").style.display = "block";
-            
-            } else if( this.userAuthenthification) this.$router.push('dashboard'); event.preventDefault()
-
-            this.$v.$touch();
+                }
+            });
+            if(this.$store.getters["auth"]["loggedIn"]){
+                this.$router.push('dashboard'); 
+                event.preventDefault()
+            } else {
+                this.incorrectDataMassage = 'username or password is incorrect!'
+            } 
         }
     }
 }
 </script>
+
+<style>
+    .form-group span, .error {
+        color: red;
+    }
+    .form-group input{
+        width: 50%;
+        margin-left: 25%;
+    }
+</style>

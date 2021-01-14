@@ -7,10 +7,12 @@ import { required, alpha, max, min } from 'vee-validate/dist/rules';
 import { i18n } from './i18n.js' 
 import en from "vee-validate/dist/locale/en.json";
 import ka from "vee-validate/dist/locale/ka.json";
+import ru from "vee-validate/dist/locale/ru.json";
 
 localize({
   en,
-  ka
+  ka,
+  ru
 });
 
 extend('required', required);

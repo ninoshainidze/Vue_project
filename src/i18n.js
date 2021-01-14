@@ -21,17 +21,29 @@ const messages = {
     username: 'მომხმარებლის სახელი',
     password: 'პაროლი',
     Submit: 'შესვლა',
-    dashboard: 'ანგარიშები',
+    dashboard: 'სტატისტიკა',
     about: 'შესახებ',
     contact: 'კონტაქტი',
     service: 'სერვისები',
     logout: 'გამოსვლა',
     incorrectDataMassage: 'პაროლი ან მომხმარებლის სახელი არ არის სწორი'
-  }
+  },
+  'ru':{
+    welcomeMassage: 'добро пожаловать',
+    username: 'имя пользователя',
+    password: 'пароль',
+    Submit: 'воити',
+    dashboard: 'статистика',
+    about: 'о нас',
+    contact: 'контакт',
+    service: 'сервиси',
+    logout: 'выйти',
+    incorrectDataMassage: 'имя пользователя или пароль неверны'
+  },
+
 }
 export const i18n = new VueI18n({
   locale: 'en',
-  fallbackLocale: 'ka',
   messages
 });
 

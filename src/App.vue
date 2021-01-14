@@ -19,7 +19,8 @@ export default {
      return {       
         languages: [      
           { language: 'en', title: 'English' },      
-          { language: 'ka', title: 'ქართული' }
+          { language: 'ka', title: 'ქართული' },
+          { language: 'ru', title: 'Русский' }
         ]    
       };
   },

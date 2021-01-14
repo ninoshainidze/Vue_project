@@ -1,7 +1,7 @@
 <template>
     <div>
         <navbar/>
-        <h1>DashBoard</h1>
+        <h1>{{$t('dashboard')}}</h1>
     </div>
 </template>
 

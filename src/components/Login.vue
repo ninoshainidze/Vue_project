@@ -2,8 +2,9 @@
     <div>
         <h1>{{$t('welcomeMassage')}}</h1>
         <img alt="Vue logo" src="../assets/logo.png">
-        <form @submit.prevent="onSubmit">
-            <ValidationProvider name="username" rules="required|alpha|max:5|min:3" v-slot="{ errors }">
+        <ValidationObserver  v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(onSubmit)">
+            <ValidationProvider :name="$t('username')" rules="required|alpha|max:5|min:3" v-slot="{ errors }">
                 <div class="form-group">
                     <label>{{$t('username')}}</label>
                     <input type="text" class="form-control" v-model="username">
@@ -11,20 +12,18 @@
                 </div>
             </ValidationProvider>
 
-            <ValidationProvider name="password" rules="required|max:5|min:2" v-slot="{ errors }">
+            <ValidationProvider :name="$t('password')" rules="required|max:5|min:2" v-slot="{ errors }">
                 <div class="form-group">
                     <label>{{$t('password')}}</label>
                     <input type="password" class="form-control" v-model="password">
                     <span>{{ errors[0] }}</span>
+                    
                 </div>
             </ValidationProvider>
+            <button type="submit"  class="btn buttton">{{$t('Submit')}}</button>
 
-            <div class="error">
-                <span>{{ incorrectDataMassage }}</span>
-            </div>
-
-            <button type="submit">{{$t('Submit')}}</button>
         </form>
+    </ValidationObserver>
     </div>
 </template>
 
@@ -43,27 +42,34 @@ export default {
             username:'',
             password:'',
             userAuthenthification: false,
-            incorrectDataMassage: '',
+            role: '',
             locale: 'en',
         }
     },
     methods:{
-        onSubmit(){
+     onSubmit(){
+            
             this.$store.getters["auth"]["loggedIn"] = false
+
             json.forEach(user => {
                 if(this.username == user["userName"] && this.password == user["password"])
                 {
                     this.$store.getters["auth"]["loggedIn"] = true
                     this.userAuthenthification = true
+                    this.$store.getters["auth"]["role"] = user["role"]
+                    console.log(this.$store.getters["auth"]["role"])
+                    localStorage.setItem("isLogin",true)
                 }
             });
+
             if(this.$store.getters["auth"]["loggedIn"]){
                 this.$router.push('dashboard'); 
                 event.preventDefault()
-            } else {
-                this.incorrectDataMassage =`${this.$t("incorrectDataMassage")}`
             } 
+          
+            
         }
+
     }
 }
 </script>
@@ -73,7 +79,10 @@ export default {
         color: red;
     }
     .form-group input{
-        width: 50%;
-        margin-left: 25%;
+        width: 25%;
+        margin-left: 37.5%;
+    }
+    .buttton {
+        background-color: #7DCEA0;
     }
 </style>

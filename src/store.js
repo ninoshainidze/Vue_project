@@ -6,12 +6,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         user: {
-            loggedIn: false
+            loggedIn: false,
+            role : "guest"
         }
     },
     getters: {
         auth(state) {
             return state.user
+        },
+        getRole(state) {
+            return state.role
         }
         
     }

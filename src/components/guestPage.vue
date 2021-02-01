@@ -3,12 +3,6 @@
         <nav class="navbar navbar-expand-lg ">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link"><router-link to="dashboard">{{$t('dashboard')}}</router-link></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" > <router-link to="about" >{{$t('about')}}</router-link></a>
-                    </li>
                     <li class="nav-item ">
                         <a class="nav-link"><router-link to="contact" >{{$t('contact')}}</router-link></a>  
                     </li>
@@ -19,13 +13,14 @@
             </div>
             <button v-on:click = "logout" class="btn button"> <router-link to="/">{{$t('logout')}}</router-link></button>
         </nav>
-        
+        <div>Guest</div>
     </div>
+  
 </template>
 
 <script>
 export default {
-    name:'navbar',
+    name:'guestPage',
     methods: {
         logout(){
             localStorage.removeItem("isLogin")

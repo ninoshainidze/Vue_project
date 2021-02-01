@@ -5,6 +5,7 @@ import Login from './components/Login'
 import dashboard from './components/dashboard'
 import service from './components/service'
 import contact from './components/contact'
+import guestPage from './components/guestPage'
 import store from './store.js'
 
 Vue.use(router)
@@ -28,7 +29,13 @@ const VueRouter = new router({
                         {name:'Login'}
                     )
                 }
-                next()
+                if(store.getters["auth"]["role"] == "admin"){
+                    next()
+                }else {
+                    return next (
+                        {name:'guestPage'}
+                    )
+                }
             }
         },            
         {
@@ -41,7 +48,13 @@ const VueRouter = new router({
                         {name:'Login'}
                     )
                 }
-                next()
+                if(store.getters["auth"]["role"] == "admin"){
+                    next()
+                }else {
+                    return next (
+                        {name:'guestPage'}
+                    )
+                }
             }
         },
         {
@@ -54,13 +67,39 @@ const VueRouter = new router({
                         {name:'Login'}
                     )
                 }
-                next()
+                if(store.getters["auth"]["role"] == "admin"){
+                    next()
+                }else {
+                    return next (
+                        {name:'guestPage'}
+                    )
+                }
+                
             }
         },
         {
             path:"/service",
             name:"service",
             component:service,
+            beforeEnter:(to, from, next) =>{
+                if(!store.getters["auth"]["loggedIn"]){
+                    return next(
+                        {name:'Login'}
+                    )
+                }
+                if(store.getters["auth"]["role"] == "admin"){
+                    next()
+                }else {
+                    return next (
+                        {name:'guestPage'}
+                    )
+                }
+            }
+        },
+        {
+            path:"/guestPage",
+            name:"guestPage",
+            component:guestPage,
             beforeEnter:(to, from, next) =>{
                 if(!store.getters["auth"]["loggedIn"]){
                     return next(

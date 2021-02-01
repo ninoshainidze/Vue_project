@@ -14,7 +14,7 @@ const messages = {
     contact: 'contact',
     service: 'service',
     logout: 'logout',
-    incorrectDataMassage: 'username  or password is not correct'
+    incorrectData: 'username or password is not correct'
   },
   'ka':{
     welcomeMassage: 'მოგესალმებით',
@@ -26,7 +26,7 @@ const messages = {
     contact: 'კონტაქტი',
     service: 'სერვისები',
     logout: 'გამოსვლა',
-    incorrectDataMassage: 'პაროლი ან მომხმარებლის სახელი არ არის სწორი'
+    incorrectData: 'მომხმარებლის სახელი ან პაროლი არ არის სწორი '
   },
   'ru':{
     welcomeMassage: 'добро пожаловать',
@@ -38,7 +38,8 @@ const messages = {
     contact: 'контакт',
     service: 'сервиси',
     logout: 'выйти',
-    incorrectDataMassage: 'имя пользователя или пароль неверны'
+    incorrectData:'имя пользователя или пароль неверны'
+    
   },
 
 }

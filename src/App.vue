@@ -1,38 +1,21 @@
 <template>
   <div id="app">
-
-    <select @change="changeLocale($event)">  
-      <option v-for="lan in languages" :key="lan.title" :value="lan.language">{{ lan.title }}</option>
-    </select>
-
+    
+    <languageSwitcher></languageSwitcher>
     <router-view/>
   </div>
 </template>
 
 <script>
-import i18n from './i18n.js';
-import { localize } from 'vee-validate'
+import languageSwitcher from './components/languageSwitcher'
+
 
 export default {
   name: 'App',
-  data() {   
-     return {       
-        languages: [      
-          { language: 'en', title: 'English' },      
-          { language: 'ka', title: 'ქართული' },
-          { language: 'ru', title: 'Русский' }
-        ]    
-      };
-  },
-  methods: { 
-    changeLocale(event) {    
-      i18n.locale = event.target.value;
-      localize(event.target.value)
-
-    }
+  components: {
+    languageSwitcher
   }
 }
-
 
 </script>
 

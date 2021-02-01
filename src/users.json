@@ -1,14 +1,17 @@
 
 [
     {
+        "role": "guest",
         "userName":"qwert", 
         "password":"qwert"
     }, 
     {
+        "role": "admin",
         "userName":"nino", 
         "password":"nino"
     },
     {
+        "role": "guest",
         "userName":"lilo", 
         "password":"lilo"
     }

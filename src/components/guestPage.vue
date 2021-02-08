@@ -3,24 +3,34 @@
         <nav class="navbar navbar-expand-lg ">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link"><router-link to="contact" >{{$t('contact')}}</router-link></a>  
+                    <li class="nav-item">
+                        <a class="nav-link" > <router-link to="/guest/about" >{{$t('about')}}</router-link></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><router-link to="service" >{{$t('service')}}</router-link></a>     
+                        <a class="nav-link"><router-link to="/guest/contact" >{{$t('contact')}}</router-link></a>  
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link"><router-link to="/guest/service" >{{$t('service')}}</router-link></a>     
                     </li>
                 </ul>
             </div>
             <button v-on:click = "logout" class="btn button"> <router-link to="/">{{$t('logout')}}</router-link></button>
         </nav>
-        <div>Guest</div>
+        <div>{{ $route.params.id }}</div>
+        <languageSwitcher></languageSwitcher>
     </div>
   
 </template>
 
 <script>
+
+import languageSwitcher from './languageSwitcher'
+
 export default {
     name:'guestPage',
+    components:{
+        languageSwitcher
+    },
     methods: {
         logout(){
             localStorage.removeItem("isLogin")

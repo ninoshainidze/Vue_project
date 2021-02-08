@@ -20,6 +20,7 @@
                     
                 </div>
             </ValidationProvider>
+            
             <button type="submit"  class="btn buttton">{{$t('Submit')}}</button>
 
         </form>
@@ -63,7 +64,7 @@ export default {
             });
 
             if(this.$store.getters["auth"]["loggedIn"]){
-                this.$router.push('dashboard'); 
+                this.$router.push(this.$store.getters["auth"]["role"]); 
                 event.preventDefault()
             } 
           

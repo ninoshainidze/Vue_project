@@ -20,95 +20,43 @@ const VueRouter = new router({
             component:Login
         },
         {
-            path:"/dashboard",
-            name:"dashboard",
-            component:dashboard,
-            beforeEnter:(to, from, next) =>{
+            path: '/guest', 
+            component: guestPage,
+                children: [
+                    { path: 'service', component: service },
+                    { path: 'About',component: About },
+                    { path: 'contact',component: contact }
+                ],
+                beforeEnter:(to, from, next) =>{
                 if(!store.getters["auth"]["loggedIn"]){
                     return next(
                         {name:'Login'}
                     )
-                }
-                if(store.getters["auth"]["role"] == "admin"){
-                    next()
-                }else {
-                    return next (
-                        {name:'guestPage'}
-                    )
-                }
-            }
-        },            
-        {
-            path:"/about",
-            name:"about",
-            component:About,
-            beforeEnter:(to, from, next) =>{
-                if(!store.getters["auth"]["loggedIn"]){
-                    return next(
-                        {name:'Login'}
-                    )
-                }
-                if(store.getters["auth"]["role"] == "admin"){
-                    next()
-                }else {
-                    return next (
-                        {name:'guestPage'}
-                    )
-                }
-            }
-        },
-        {
-            path:"/contact",
-            name:"contact",
-            component:contact,
-            beforeEnter:(to, from, next) =>{
-                if(!store.getters["auth"]["loggedIn"]){
-                    return next(
-                        {name:'Login'}
-                    )
-                }
-                if(store.getters["auth"]["role"] == "admin"){
-                    next()
-                }else {
-                    return next (
-                        {name:'guestPage'}
-                    )
-                }
+                } if(store.getters["auth"]["role"] =="guest")next()
                 
             }
         },
         {
-            path:"/service",
-            name:"service",
-            component:service,
-            beforeEnter:(to, from, next) =>{
-                if(!store.getters["auth"]["loggedIn"]){
-                    return next(
-                        {name:'Login'}
-                    )
+            path: '/admin', 
+            component: dashboard,
+            children: [
+                { path: 'dashboard',component: dashboard },
+                { path: 'service',component: service },
+                { path: 'About',component: About },
+                { path: 'contact',component: contact }
+            ],
+                beforeEnter:(to, from, next) =>{
+                    console.log(store.getters["auth"]["role"])
+                    if(!store.getters["auth"]["loggedIn"]){
+                        return next(
+                            {name:'Login'}
+                        )
+                    }
+                    if(store.getters["auth"]["role"] == "admin")next()
+                    
                 }
-                if(store.getters["auth"]["role"] == "admin"){
-                    next()
-                }else {
-                    return next (
-                        {name:'guestPage'}
-                    )
-                }
+            
             }
-        },
-        {
-            path:"/guestPage",
-            name:"guestPage",
-            component:guestPage,
-            beforeEnter:(to, from, next) =>{
-                if(!store.getters["auth"]["loggedIn"]){
-                    return next(
-                        {name:'Login'}
-                    )
-                }
-                next()
-            }
-        },
     ]
 })
 

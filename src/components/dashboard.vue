@@ -9,7 +9,10 @@
 import navbar from './navbar'
 import store from '.././store'
 
-if(localStorage.getItem("isLogin")) store.getters["auth"]["loggedIn"] = true
+if(localStorage.getItem("isLogin")) {
+    store.getters["auth"]["loggedIn"] = true 
+    
+}
 
 export default {
     name:'dashboard',

@@ -4,28 +4,34 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link"><router-link to="dashboard">{{$t('dashboard')}}</router-link></a>
+                        <a class="nav-link"><router-link to="/admin/dashboard">{{$t('dashboard')}}</router-link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" > <router-link to="about" >{{$t('about')}}</router-link></a>
+                        <a class="nav-link" > <router-link to="/admin/about" >{{$t('about')}}</router-link></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><router-link to="contact" >{{$t('contact')}}</router-link></a>  
+                        <a class="nav-link"><router-link to="/admin/contact" >{{$t('contact')}}</router-link></a>  
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><router-link to="service" >{{$t('service')}}</router-link></a>     
+                        <a class="nav-link"><router-link to="/admin/service" >{{$t('service')}}</router-link></a>     
                     </li>
                 </ul>
             </div>
             <button v-on:click = "logout" class="btn button"> <router-link to="/">{{$t('logout')}}</router-link></button>
         </nav>
-        
+        <languageSwitcher></languageSwitcher>
     </div>
 </template>
 
 <script>
+
+import languageSwitcher from './languageSwitcher'
+
 export default {
     name:'navbar',
+    components:{
+        languageSwitcher
+    },
     methods: {
         logout(){
             localStorage.removeItem("isLogin")

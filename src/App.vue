@@ -1,20 +1,14 @@
 <template>
   <div id="app">
     
-    <languageSwitcher></languageSwitcher>
     <router-view/>
   </div>
 </template>
 
 <script>
-import languageSwitcher from './components/languageSwitcher'
-
-
 export default {
-  name: 'App',
-  components: {
-    languageSwitcher
-  }
+  name: 'App'
+  
 }
 
 </script>

@@ -7,7 +7,7 @@ export default new Vuex.Store({
     state: {
         user: {
             loggedIn: false,
-            role : "guest"
+            role : ""
         }
     },
     getters: {

@@ -60,6 +60,7 @@ export default {
                     this.$store.getters["auth"]["role"] = user["role"]
                     console.log(this.$store.getters["auth"]["role"])
                     localStorage.setItem("isLogin",true)
+                    localStorage.setItem("role",user["role"])
                 }
             });
 

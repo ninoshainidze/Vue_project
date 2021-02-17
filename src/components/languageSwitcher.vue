@@ -3,7 +3,6 @@
         <select @change="changeLocale($event)">  
             <option v-for="lan in languages" :key="lan.title" :value="lan.language">{{ lan.title }}</option>
         </select>
-      
     </div>
 </template>
 
@@ -37,11 +36,13 @@ export default {
     .language{
         text-align:right !important;
         /* height: 100px; */
+        
     }
     .language select{
         border-radius: 20px;
         background-color: #7DCEA0;
         height: 40px;
-        border: none;
+        width: 80px  !important;
+        /* border: none; */
     }
 </style>

@@ -1,36 +1,42 @@
 <template>
     <div>
+        
         <nav class="navbar navbar-expand-lg ">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link"><router-link to="/admin/dashboard">{{$t('dashboard')}}</router-link></a>
+                        <a class="nav-link" > <router-link to="/guest" >{{$t('home')}}</router-link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" > <router-link to="/admin/about" >{{$t('about')}}</router-link></a>
+                        <a class="nav-link" > <router-link to="/guest/about" >{{$t('about')}}</router-link></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><router-link to="/admin/contact" >{{$t('contact')}}</router-link></a>  
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link"><router-link to="/admin/service" >{{$t('service')}}</router-link></a>     
+                        <a class="nav-link"><router-link to="/guest/contact" >{{$t('contact')}}</router-link></a>  
                     </li>
                 </ul>
             </div>
+            <languageSwitcher></languageSwitcher>
             <button v-on:click = "logout" class="btn button"> <router-link to="/">{{$t('logout')}}</router-link></button>
+            
         </nav>
-        <languageSwitcher></languageSwitcher>
+
+        <router-view/>
+        <userFooter/>
     </div>
+  
 </template>
 
 <script>
 
-import languageSwitcher from './languageSwitcher'
+import userFooter from '.././footer/userFooter'
+
+import languageSwitcher from '.././languageSwitcher'
 
 export default {
-    name:'navbar',
+    name:'userNavbar',
     components:{
-        languageSwitcher
+        languageSwitcher,
+        userFooter
     },
     methods: {
         logout(){

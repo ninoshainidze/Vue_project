@@ -35,14 +35,12 @@ export default {
 <style>
     .language{
         text-align:right !important;
-        /* height: 100px; */
-        
     }
     .language select{
         border-radius: 20px;
-        background-color: #7DCEA0;
+        background:transparent;
         height: 40px;
-        width: 80px  !important;
-        /* border: none; */
+        border: 1px solid black;
     }
+   
 </style>

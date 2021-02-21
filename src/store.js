@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
@@ -18,5 +19,15 @@ export default new Vuex.Store({
             return state.role
         }
         
-    }
+    },
+    mutations: {
+        logIn(state) {
+          state.user.loggedIn = true
+        },
+        logOut(state) {
+            state.user.loggedIn = false
+          }
+      },
+      plugins: [createPersistedState()]
+
 })

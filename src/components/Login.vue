@@ -1,8 +1,10 @@
 <template>
     <div>
+        
         <h1>{{$t('welcomeMassage')}}</h1>
         <img alt="Vue logo" src="../assets/logo.png">
         <ValidationObserver  v-slot="{ handleSubmit }">
+            
         <form @submit.prevent="handleSubmit(onSubmit)">
             <ValidationProvider :name="$t('username')" rules="required|alpha|max:5|min:3" v-slot="{ errors }">
                 <div class="form-group">
@@ -30,6 +32,7 @@
 
 <script>
 
+
 import json from '.././users.json'
 
 export default {
@@ -42,30 +45,29 @@ export default {
         return {
             username:'',
             password:'',
-            userAuthenthification: false,
             role: '',
             locale: 'en',
         }
     },
     methods:{
+        
      onSubmit(){
+        console.log("ss",this.$store.state.user.loggedIn)
             
-            this.$store.getters["auth"]["loggedIn"] = false
-
             json.forEach(user => {
                 if(this.username == user["userName"] && this.password == user["password"])
                 {
-                    this.$store.getters["auth"]["loggedIn"] = true
-                    this.userAuthenthification = true
-                    this.$store.getters["auth"]["role"] = user["role"]
-                    console.log(this.$store.getters["auth"]["role"])
-                    localStorage.setItem("isLogin",true)
-                    localStorage.setItem("role",user["role"])
+                
+                    this.$store.state.user.role = user["role"]
+                    this.$store.commit("logIn",true)
+                    console.log(this.$store.state.user.loggedIn)
+                    // console.log(this.$store.getters["auth"]["role"])
+                    // localStorage.setItem("role",user["role"])
                 }
             });
 
-            if(this.$store.getters["auth"]["loggedIn"]){
-                this.$router.push(this.$store.getters["auth"]["role"]); 
+            if(this.$store.state.user.loggedIn){
+                this.$router.push(this.$store.state.user.role); 
                 event.preventDefault()
             } 
           

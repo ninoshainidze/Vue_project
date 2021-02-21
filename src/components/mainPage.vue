@@ -1,14 +1,14 @@
 <template>
   <div>
-
-    <div class="home">
+     
+    <div class="mainPage">
       
-        <img class="img1" src="../../assets/img1.jpg">
+        <img class="img1" src="../assets/img1.jpg">
         <div class="centered">
           Live long and prosper 
-          <img class="img2" style="width: 30px;" src="../../assets/icons8-spock-50.png">
+          <img class="img2" style="width: 30px;" src="../assets/icons8-spock-50.png">
         <br>
-        <button  class="btn button  homeButton"> <router-link to="/user/about">read more</router-link></button>
+        <button  class="btn button  homeButton"> <router-link to="/Login">Login</router-link></button>
         </div>
         
        
@@ -20,17 +20,11 @@
 
 <script>
 
-import store from '../.././store'
-
-
-if(localStorage.getItem("isLogin")) {
-    store.getters["auth"]["loggedIn"] = true 
-    
-}
 
   export default {
-    name:'home' 
+    name:'mainPage'
   }
+
 </script>
 
 
@@ -39,7 +33,7 @@ if(localStorage.getItem("isLogin")) {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
   }
-  .home{
+  .mainPage{
     width: 100%;
     height: auto;
   }
@@ -51,7 +45,7 @@ if(localStorage.getItem("isLogin")) {
   transform: translate(-50%, -50%);
 }
 
- .home .img1{
+ .mainPage .img1{
    width: 100%;
    height: 600px;
  }

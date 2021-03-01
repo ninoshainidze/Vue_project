@@ -7,7 +7,7 @@
                         <a class="nav-link"><router-link to="/admin">{{$t('dashboard')}}</router-link></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"><router-link to="/admin/service" >{{$t('service')}}</router-link></a>     
+                        <a class="nav-link"><router-link to="/admin/controlPanel" >{{$t('controlPanel')}}</router-link></a>     
                     </li>
                 </ul>
             </div>

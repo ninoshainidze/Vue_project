@@ -5,7 +5,7 @@ import Login from './components/Login'
 import About from './view/guestComponent/About'
 import contact from './view/guestComponent/contact'
 import dashboard from './view/adminComponent/dashboard'
-import service from './view/adminComponent/service'
+import controlPanel from './view/adminComponent/controlPanel'
 import home from './view/userComponents/home'
 import profile from './view/userComponents/profile'
 import store from './store.js'
@@ -115,9 +115,9 @@ const VueRouter = new router({
             }
             },
               {
-                path: '/service',
-                name: ' service',
-                component: service,
+                path: '/controlPanel',
+                name: ' controlPanel',
+                component: controlPanel,
                 beforeEnter:(to, from, next) =>{
                     if(store.state.user.loggedIn && store.state.user.role =="admin"){
                         console.log("before")

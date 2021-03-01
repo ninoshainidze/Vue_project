@@ -1,11 +1,9 @@
 <template>
     <div class="mt-5">
         <adminNavbar/>
-        <h1>{{$t('service')}}</h1>
-
-        
-        
-
+        <!-- <h1>{{$t('service')}}</h1> -->
+        <button  class="btn button  homeButton">add user</button>
+        <button  class="btn button  homeButton">delete user</button>
         <div>
             <b-table striped hover :items = "items"></b-table>
         </div>
@@ -19,7 +17,7 @@ import adminNavbar from '../../components/navbar/adminNavbar'
 import PageFooter from '../../components/footer/pageFooter'
 
 export default {
-    name:'service',
+    name:'controlPanel',
     components:{
         adminNavbar,
         PageFooter

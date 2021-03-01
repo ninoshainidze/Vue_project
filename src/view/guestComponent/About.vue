@@ -1,58 +1,60 @@
 <template>
   <div class="about">
-
+    <Navbar/>
     <div class="about_content">
       <div class="nino">
-
       <div>
-        <h2>we are the ragac ragac</h2>
-        <p>We now work with 91 of the Fortune Global 100. As of 2020, we've made 18 consecutive appearances on the list of Fortune's
-           "World's Most Admired Companies". And that's just the beginning.</p>
-          
+        <h2>{{$t('aboutHeader')}}</h2>
+        <p>{{$t('aboutUs')}}</p>
         </div>
-          <h4>Our team</h4>
+          <h4>{{$t('ourteam')}}</h4>
           <div class="profile_cards">
-          <div class="card">
+          <div class="card _card_">
             <img src="../../assets/timothee chalamet.jpg" alt="John" style="width:100%">
             <p>John Doe</p>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
+            <p>CEO & Founder, Example</p>
+            
           </div>
-          <div class="card">
+          <div class="card _card_">
             <img src="../../assets/timothee chalamet.jpg" alt="John" style="width:100%">
             <p>John Doe</p>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
+            <p >CEO & Founder, Example</p>
+          
           </div>
-          <div class="card">
+          <div class="card _card_">
             <img src="../../assets/timothee chalamet.jpg" alt="John" style="width:100%">
             <p>John Doe</p>
-            <p class="title">CEO & Founder, Example</p>
-            <p>Harvard University</p>
+            <p >CEO & Founder, Example</p>
+            
           </div>
         </div>
     </div>
   </div>
+  <PageFooter/>
   </div>
 
 </template>
 
 <script>
-  
+  import  Navbar from '../../components/navbar/navbar'
+  import PageFooter from '../../components/footer/pageFooter'
+
   export default {
-    name:'about'
+    name:'about',
+    components:{
+      Navbar,
+      PageFooter
+    }
   }
-  
+
 </script>
 
 <style>
   .about{
     width: 100%;
-    height: 700px;
+    height: 100%;
   }
   .about_content{
-    border-radius: 30px;
-    background-color: #b8afc8 ;
     margin: auto;
     height: auto;
     width: 800px;
@@ -65,13 +67,17 @@
     display: flex;
     margin: auto;
   }
-  .card {
+  ._card_ {
     margin: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
-  max-height: 350px;
-  text-align: center;
-  margin-left: 50px;
-}
-  
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 200px;
+    max-height: 350px;
+    text-align: center;
+    margin-left: 50px;
+    border-radius: 50px;
+  }
+  ._card_ img{
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+  }
 </style>

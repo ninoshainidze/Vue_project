@@ -13,6 +13,7 @@
             </div>
             <languageSwitcher></languageSwitcher>
             <button v-on:click = "logout" class="btn button ml-2"> <router-link to="/">{{$t('logout')}}</router-link></button>
+            <img src="../../assets/admin.png" alt="" style="width: 4    0px;">
             
         </nav>
         <router-view/>

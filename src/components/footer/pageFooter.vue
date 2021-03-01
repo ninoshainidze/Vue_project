@@ -14,13 +14,13 @@
 <script>
 
 export default {
-  name:'userFooter'
+  name:'pageFooter'
 }
 </script>
 
 <style>
   footer{
-    background-color:#F4ECF7 !important;
+    background-color:#DDF1FF !important;
   }
   footer img{
     width: 30px;

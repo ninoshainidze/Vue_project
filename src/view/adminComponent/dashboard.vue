@@ -1,30 +1,54 @@
 <template>
-    <div class="dashboard mt-3">
-      <div class="dashboard_content">
-              <div>
-                <h4>Website views</h4>
-                <mdb-container>
-                  <mdb-radar-chart
-                    :data="radarChartData"
-                    :options="radarChartOptions"
-                    :width="600"
-                    :height="300"
-                  ></mdb-radar-chart>
-                </mdb-container>
-              </div>
-            
-              <div>
-                <h4>Daily sails</h4>
-                <mdb-container>
-                  <mdb-horizontal-bar-chart
-                    :data="horizontalBarChartData"
-                    :options="horizontalBarChartOptions"
-                    :width="500"
-                    :height="300"
-                  ></mdb-horizontal-bar-chart>
-                </mdb-container>
-              </div>
-      <div>
+    <div class="dashboard">
+      <adminNavbar/>
+      <div class="total ml-2">
+          <b-button v-b-modal.modal-1>
+              TOLAL user
+              53,4546
+          </b-button>
+        
+          <b-modal id="modal-1" title="Amount">
+            <p class="my-4">
+              It is a long established fact that a 
+              reader will be distracted by the readable
+              content of a page when looking at its layout.
+              The point of using Lorem Ipsum is that it has a 
+              more-or-less normal distribution of letters, as 
+              opposed to using 'Content here, content here', 
+              making it look like readable English.
+            </p>
+          </b-modal>
+    
+      </div>
+      
+    
+      <div class="dashboard_content mt-5">
+        <div class="chart1 mr-5">
+          <h4>Website views</h4>
+          <mdb-container>
+            <mdb-radar-chart
+              :data="radarChartData"
+              :options="radarChartOptions"
+              :width="600"
+              :height="300"
+            ></mdb-radar-chart>
+          </mdb-container>
+        </div>
+      
+        <div class="chart2">
+          <h4>Daily sails</h4>
+          <mdb-container>
+            <mdb-horizontal-bar-chart
+              :data="horizontalBarChartData"
+              :options="horizontalBarChartOptions"
+              :width="500"
+              :height="300"
+            ></mdb-horizontal-bar-chart>
+          </mdb-container>
+        </div>
+      </div>
+
+      <div class="chart3 mt-5">
         <h4>Completed tasks</h4>
         <mdb-container>
           <mdb-scatter-chart
@@ -35,29 +59,28 @@
           ></mdb-scatter-chart>
         </mdb-container>
       </div>
-    </div>
+    
+    <PageFooter/>
     </div>
 </template>
   
 <script>
 
-// import store from '../.././store'
+import adminNavbar from '../.././components/navbar/adminNavbar'
+import PageFooter from '../.././components/footer/pageFooter'
 import {mdbHorizontalBarChart, mdbRadarChart, mdbContainer, mdbScatterChart } from "mdbvue";
 
-
-  
-// if(localStorage.getItem("isLogin")) {
-//     store.getters["auth"]["loggedIn"] = true 
-    
-// }
   
   export default {
     name: "dashboard",
     components: {
+      adminNavbar,
+      PageFooter,
       mdbHorizontalBarChart,
       mdbRadarChart,
       mdbContainer,
       mdbScatterChart
+      
     },
     data() {
       return {
@@ -314,11 +337,23 @@ import {mdbHorizontalBarChart, mdbRadarChart, mdbContainer, mdbScatterChart } fr
   
   
   <style>
-      .dashboard{
-          display: flex;
-      }
-      .dashboard_content{
-        margin: auto;
-        margin-top: 80px;
-      }
+  .total{
+    margin-top: 100px;
+  }
+  .modal-backdrop {
+    opacity: 0.5;
+}
+.chart1, .chart2, .chart3{
+  width: 500px;
+}
+
+.dashboard_content{
+  display: flex;
+}
+
+.chart3{
+  margin: 20%;
+}
+
+
   </style>

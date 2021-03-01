@@ -15,6 +15,10 @@ export default {
 <style>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
 
+*{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

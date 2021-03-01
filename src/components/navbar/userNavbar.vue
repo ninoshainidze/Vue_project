@@ -9,33 +9,30 @@
                     <li class="nav-item">
                         <a class="nav-link" > <router-link to="/user/profile" >{{$t('profile')}}</router-link></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" > <router-link to="/user/about" >{{$t('about')}}</router-link></a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link"><router-link to="/user/contact" >{{$t('contact')}}</router-link></a>  
-                    </li>
+               
+            
                 </ul>
             </div>
             <languageSwitcher></languageSwitcher>
             <button v-on:click = "logout" class="btn button ml-2"> <router-link to="/">{{$t('logout')}}</router-link></button>
+            <img src="../../assets/user.png" alt="">
         </nav>
         <router-view/>
-        <userFooter/>
+       
     </div>
 </template>
 
 
 <script>
-import userFooter from '.././footer/userFooter'
+
 
 import languageSwitcher from '.././languageSwitcher'
 
 export default {
     name:'userNavbar',
     components:{
-        languageSwitcher,
-        userFooter
+        languageSwitcher
+        
     },
     methods: {
         logout(){
@@ -67,5 +64,8 @@ export default {
     }
     .navbar a:hover{
         color: #3c5fa5;
+    }
+    .navbar img{
+        width: 40px;
     }
 </style>

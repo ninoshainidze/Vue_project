@@ -1,75 +1,136 @@
 import Vue from 'vue'
 import router from 'vue-router'
-import About from './components/userComponents/About'
-import Login from './components/Login'
-import navbar from './components/navbar/navbar'
 import mainPage from './components/mainPage'
-import dashboard from './components/adminComponents/dashboard'
-import home from './components/userComponents/home'
-import profile from './components/userComponents/profile'
-import service from './components/adminComponents/service'
-import contact from './components/userComponents/contact'
-import userNavbar from './components/navbar/userNavbar'
-import adminNavbar from './components/navbar/adminNavbar'
+import Login from './components/Login'
+import About from './view/guestComponent/About'
+import contact from './view/guestComponent/contact'
+import dashboard from './view/adminComponent/dashboard'
+import service from './view/adminComponent/service'
+import home from './view/userComponents/home'
+import profile from './view/userComponents/profile'
 import store from './store.js'
 
 
 Vue.use(router)
 
+
+
+//vue calke gavaketo componentebisavut 
+// iyos ragac gverdi romelic chatvvirtavs yvelafers
+
+//interfaceis elementebis  gamoyeneba
+//modal box +
+//table +
+// data 
+// dropdown select 
+// mivanicho tables
+// binding
+function prefixRoutes(prefix, routes) {
+    console.log(routes)
+    return routes.map((route) => {
+      route.path = prefix + '' + route.path;
+      return route;
+    });
+  }
+
+ 
+
 const VueRouter = new router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
-        {
-            path:"/",
-            name:"navbar",
-            component:navbar,
-                children:[
-                    { path: '/',name:"mainPage", component: mainPage },
-                    { path:"/Login", name:"Login",   component:Login},
-                    { path: '/about', name:"About",component: About },
-                    { path: '/contact', name:"contact",component: contact }
-                ]
-               
-                
-        },
-        {
-            path: '/user', 
-            component: userNavbar,
-                children: [
-                    { path: '', component: home },
-                    { path: 'about',component: About },
-                    { path: 'contact',component: contact },
-                    { path: 'profile',component: profile }
-                ],
-                beforeEnter:(to, from, next) =>{
-                if(!store.state.user.loggedIn){
+
+        ...prefixRoutes('', [
+            {
+              path: '/',
+              name: 'mainPage',
+              component: mainPage,
+            },
+            {
+              path: '/about',
+              name: 'about',
+              component: About,
+            },
+            {
+                path: '/contact',
+                name: ' contact',
+                component: contact,
+              },
+            {
+                path: '/Login',
+                name: 'Login',
+                component: Login,
+            },
+          ]),
+
+          ...prefixRoutes('/user', [
+            {
+              path: '',
+              name: 'home',
+              component: home,
+              beforeEnter:(to, from, next) =>{
+                if(store.state.user.loggedIn && store.state.user.role =="user"){
+                    console.log("before")
+                    next()
+                } else{
                     return next(
                         {name:'Login'}
                     )
-                    
-                } if(store.state.user.role =="user")next()
+                   
+                }
             }
-        },
-        {
-            path: '/admin', 
-            component: adminNavbar,
-            children: [
-                { path: '/',component: dashboard },
-                { path: 'service',component: service }
-            ],
+            },
+              {
+                path: '/profile',
+                name: ' profile',
+                component: profile,
                 beforeEnter:(to, from, next) =>{
-                    // store.getters["auth"]["role"] = localStorage.getItem("role")
-                    if(!store.state.user.loggedIn){
+                    if(store.state.user.loggedIn && store.state.user.role =="user"){
+                        console.log("before")
+                        next()
+                    } else{
                         return next(
                             {name:'Login'}
                         )
+                       
                     }
-                    if(store.state.user.role == "admin")next()
-                    
                 }
-            
+              },
+          ]),
+          ...prefixRoutes('/admin', [
+            {
+              path: '',
+              name: 'dashboard',
+              component: dashboard,
+              beforeEnter:(to, from, next) =>{
+                if(store.state.user.loggedIn && store.state.user.role =="admin"){
+                    console.log("before")
+                    next()
+                } else{
+                    return next(
+                        {name:'Login'}
+                    )
+                   
+                }
             }
+            },
+              {
+                path: '/service',
+                name: ' service',
+                component: service,
+                beforeEnter:(to, from, next) =>{
+                    if(store.state.user.loggedIn && store.state.user.role =="admin"){
+                        console.log("before")
+                        next()
+                    } else{
+                        return next(
+                            {name:'Login'}
+                        )
+                       
+                    }
+                }
+              },
+          ])
     ]
 })
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg ">
+        <nav class="navbar navbar-expand-lg fixed">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -16,36 +16,28 @@
             </div>
             <languageSwitcher></languageSwitcher>
         </nav>
-        <router-view/>
-        <userFooter/>
     </div>
 </template>
 
 
 <script>
-
-import userFooter from '.././footer/userFooter'
-
 import languageSwitcher from '.././languageSwitcher'
-
 export default {
     name:'userNavbar',
     components:{
-        languageSwitcher,
-        userFooter
+        languageSwitcher
     }
-    
 }
 </script>
 
 <style>
-   .navbar {
-  overflow: hidden;
-  background: transparent;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
+    .navbar {
+        overflow: hidden;
+        background-color: #DDF1FF !important;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
     .navbar a{
         color: black;
     }

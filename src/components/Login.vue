@@ -1,8 +1,8 @@
 <template>
     <div>
-        
+        <Navbar/>
         <h1>{{$t('welcomeMassage')}}</h1>
-        <img alt="Vue logo" src="../assets/logo.png">
+        <img alt="Vue logo" src="../assets/logo.png" style="width: 300px;">
         <ValidationObserver  v-slot="{ handleSubmit }">
             
         <form @submit.prevent="handleSubmit(onSubmit)">
@@ -23,20 +23,27 @@
                 </div>
             </ValidationProvider>
             
-            <button type="submit"  class="btn buttton">{{$t('Submit')}}</button>
+            <button type="submit"  class="btn button  homeButton" style="margin: 0px !important">{{$t('Submit')}}</button>
+            <!-- <button  > <router-link to="/Login">{{$t('login')}}</router-link></button> -->
 
         </form>
     </ValidationObserver>
+    <PageFooter/>
     </div>
 </template>
 
 <script>
 
-
-import json from '.././users.json'
+import Navbar from './navbar/navbar'   
+import PageFooter from './footer/pageFooter'
+import json from '../users.json'
 
 export default {
     name:'Login',
+    components:{
+        Navbar,
+        PageFooter
+    },
     props:{
         msg: String
     },
@@ -52,20 +59,14 @@ export default {
     methods:{
         
      onSubmit(){
-        console.log("ss",this.$store.state.user.loggedIn)
-            
+        console.log(this.$store.state.user.role);
             json.forEach(user => {
                 if(this.username == user["userName"] && this.password == user["password"])
                 {
-                
                     this.$store.state.user.role = user["role"]
                     this.$store.commit("logIn",true)
-                    console.log(this.$store.state.user.loggedIn)
-                    // console.log(this.$store.getters["auth"]["role"])
-                    // localStorage.setItem("role",user["role"])
                 }
             });
-
             if(this.$store.state.user.loggedIn){
                 this.$router.push(this.$store.state.user.role); 
                 event.preventDefault()

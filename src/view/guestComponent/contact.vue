@@ -1,5 +1,6 @@
 <template>
     <div class="contact">
+      <Navbar/>
         <div class="contact_content">
             <div class="contact_form">
                 <h3>Contact Us</h3>
@@ -30,23 +31,30 @@
             <div class="contact_information">
                 <h5>Contact Details</h5>
                 <p>simply dummy text of the printing and<br> typesetting industry.
-                     Lorem Ipsum has been the industry's<br> standard dummy text ev
+                     Lorem Ipsum has been the<br> standard dummy text ev
                      er since the 1500s, when an unknown</p>
                      <p>101 bc 10B</p>
                      <p>+995 55 55 55</p>
                      <p>nino_55@gmail.com</p>
             </div>
         </div>
-        
+        <PageFooter/>
     </div>
 </template>
 
 <script>
 
-export default {
-    name:'contact',
+import  Navbar from '../.././components/navbar/navbar'
+import PageFooter from '../.././components/footer/pageFooter'
 
-}
+  export default {
+    name:'contact',
+    components:{
+      Navbar,
+      PageFooter
+    }
+  }
+  
 </script>
 
 
@@ -57,7 +65,6 @@ export default {
     height: 600px;
   }
 .contact_content{
-    background-color: #e7bac6 ;
     margin: auto;
     height: 500px;
     width: 100%;
@@ -97,7 +104,7 @@ input[type=submit]:hover {
   padding: 20px;
 }
 .contact_information{
-    margin: 40px;
+    margin: 100px;
 }
 
 

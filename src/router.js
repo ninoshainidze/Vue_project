@@ -13,18 +13,6 @@ import store from './store.js'
 
 Vue.use(router)
 
-
-
-//vue calke gavaketo componentebisavut 
-// iyos ragac gverdi romelic chatvvirtavs yvelafers
-
-//interfaceis elementebis  gamoyeneba
-//modal box +
-//table +
-// data 
-// dropdown select 
-// mivanicho tables
-// binding
 function prefixRoutes(prefix, routes) {
     console.log(routes)
     return routes.map((route) => {

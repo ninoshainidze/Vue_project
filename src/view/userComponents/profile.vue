@@ -1,6 +1,6 @@
 <template>
     <div class="profile">
-      <userNavbar/>
+      <!-- <userNavbar/> -->
       <div class="background"></div>
       <div class="user">
         <img src="../../assets/download.png" alt="">
@@ -8,22 +8,18 @@
             <b-table striped hover :items = "items"></b-table>
         </div>
       </div>
-      <PageFooter/>
+      <!-- <PageFooter/> -->
     </div>
 </template>
   
 
 
 <script>
-import userNavbar from '../.././components/navbar/userNavbar'
-import PageFooter from '../.././components/footer/pageFooter'
+// import userNavbar from '../.././components/navbar/userNavbar'
+// import PageFooter from '../.././components/footer/pageFooter'
     
 export default {
   name:'profile',
-  components:{
-    userNavbar,
-    PageFooter
-  },
   data(){
     return{
         items:[

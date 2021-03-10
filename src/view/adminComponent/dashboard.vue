@@ -1,12 +1,12 @@
 <template>
     <div class="dashboard">
       <adminNavbar/>
+      <div style="display:flex; justify-content:center;">
       <div class="total ml-2">
           <b-button v-b-modal.modal-1>
               TOLAL user
-              53,4546
+              {{userNumber}}
           </b-button>
-        
           <b-modal id="modal-1" title="Amount">
             <p class="my-4">
               It is a long established fact that a 
@@ -18,7 +18,25 @@
               making it look like readable English.
             </p>
           </b-modal>
-    
+      </div>
+
+      <div class="total ml-2">
+          <b-button v-b-modal.modal-1>
+              TOLAL admin
+              {{adminNumber}}
+          </b-button>
+          <b-modal id="modal-1" title="Amount">
+            <p class="my-4">
+              It is a long established fact that a 
+              reader will be distracted by the readable
+              content of a page when looking at its layout.
+              The point of using Lorem Ipsum is that it has a 
+              more-or-less normal distribution of letters, as 
+              opposed to using 'Content here, content here', 
+              making it look like readable English.
+            </p>
+          </b-modal>
+      </div>
       </div>
       
     
@@ -69,6 +87,8 @@
 import adminNavbar from '../.././components/navbar/adminNavbar'
 import PageFooter from '../.././components/footer/pageFooter'
 import {mdbHorizontalBarChart, mdbRadarChart, mdbContainer, mdbScatterChart } from "mdbvue";
+import firebase from "../../firebase";
+const db = firebase.firestore();
 
   
   export default {
@@ -84,6 +104,9 @@ import {mdbHorizontalBarChart, mdbRadarChart, mdbContainer, mdbScatterChart } fr
     },
     data() {
       return {
+        userNumber:0,
+        adminNumber:0,
+
         horizontalBarChartData: {
           labels: [
             "Red",
@@ -331,6 +354,20 @@ import {mdbHorizontalBarChart, mdbRadarChart, mdbContainer, mdbScatterChart } fr
         }
       
       };
+    },
+    mounted(){
+      db.collection("members")
+      .get()
+      .then((querySnapshot) =>{
+        querySnapshot.forEach((doc) => {
+          if(doc.data()["role"] == "admin"){
+            this.adminNumber += 1
+          }
+          else {
+            this.userNumber += 1
+          }
+        })
+      })
     }
   };
   </script>

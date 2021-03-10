@@ -58,18 +58,13 @@
 </template>
 
 <script>
-
 import userNavbar from '../../components/navbar/userNavbar'
 import PageFooter from '../../components/footer/pageFooter'
-
-
-
   export default {
     name:'home',
     components:{
       userNavbar,
       PageFooter
-
     }
   }
 </script>
@@ -82,9 +77,6 @@ import PageFooter from '../../components/footer/pageFooter'
   /* margin-top: 50px !important; */
   display: flex;
 }
-
  
-
  
 </style>
-

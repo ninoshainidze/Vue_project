@@ -9,6 +9,7 @@ import en from "vee-validate/dist/locale/en.json";
 import ka from "vee-validate/dist/locale/ka.json";
 import ru from "vee-validate/dist/locale/ru.json";
 import { BootstrapVue } from 'bootstrap-vue'
+// import db from './firebase'
 
 Vue.use(BootstrapVue)
 

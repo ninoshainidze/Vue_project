@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import router from 'vue-router'
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
+// Vue.use(router)
 
 export default new Vuex.Store({
     state: {
@@ -22,12 +24,17 @@ export default new Vuex.Store({
     },
     mutations: {
         logIn(state) {
-          state.user.loggedIn = true
+            state.user.loggedIn = true
+          
         },
         logOut(state) {
-            state.user.loggedIn = false
-          }
-      },
-      plugins: [createPersistedState()]
+            localStorage.removeItem("role")
+            state.user.loggedIn = false 
+            localStorage.setItem("alreadyLogged", true)
+
+        }
+    },
+    plugins: [createPersistedState()]
 
 })
+

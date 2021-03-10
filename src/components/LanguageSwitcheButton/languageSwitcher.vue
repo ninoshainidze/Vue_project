@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import i18n from '.././i18n.js';
+import i18n from '../../i18n.js';
 import { localize } from 'vee-validate'
 
 export default {
@@ -38,9 +38,9 @@ export default {
     }
     .language select{
         border-radius: 20px;
-        background:transparent;
+        background:#00bcd4;
         height: 40px;
-        border: 1px solid black;
+        border: none;
     }
    
 </style>

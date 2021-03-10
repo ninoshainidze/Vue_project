@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <router-view/>
+      <!-- <Spinner/> -->
+  
+      <router-view/>
+    
+    
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-  
-}
 
+// import Spinner from './components/spinner/spinner'
+
+export default {
+  name: 'App',
+  components:{
+    // Spinner
+  }
+}
+console.log(localStorage.removeItem("role"));
 </script>
 
-<style>
+<style scope>
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
 
 *{
@@ -23,7 +32,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-<footer class=" text-center text-lg-start fixed-bottom">
+<footer class=" text-center text-lg-start">
   <div class="text-center p-3">
     © 2020 
     <a href="" class="mr-2"><img src="../../assets/linkedin.png" alt=""></a>
@@ -20,7 +20,10 @@ export default {
 
 <style>
   footer{
-    background-color:#DDF1FF !important;
+    /* background-color:#DDF1FF !important; */
+    background-image: url('../../assets/footer-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   footer img{
     width: 30px;

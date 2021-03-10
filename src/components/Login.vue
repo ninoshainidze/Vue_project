@@ -1,10 +1,16 @@
 <template>
     <div>
         <Navbar/>
-        <h1>{{$t('welcomeMassage')}}</h1>
-        <img alt="Vue logo" src="../assets/logo.png" style="width: 300px;">
-        <ValidationObserver  v-slot="{ handleSubmit }">
-            
+        <div class="container" style="margin-top:100px;">
+            <div class="col-sm-12 text-center">
+                <h1>{{$t('welcomeMassage')}}</h1>
+                <img alt="Vue logo" src="../assets/icons8-whois-100.png" >
+            </div>
+        </div>
+        
+        <div class="container text-center" style="margin-bottom:100px;">
+
+    <ValidationObserver  v-slot="{ handleSubmit }">
         <form @submit.prevent="handleSubmit(onSubmit)">
             <ValidationProvider :name="$t('username')" rules="required|alpha|max:5|min:3" v-slot="{ errors }">
                 <div class="form-group">
@@ -13,7 +19,6 @@
                     <span>{{ errors[0] }}</span>
                 </div>
             </ValidationProvider>
-
             <ValidationProvider :name="$t('password')" rules="required|max:5|min:2" v-slot="{ errors }">
                 <div class="form-group">
                     <label>{{$t('password')}}</label>
@@ -22,27 +27,29 @@
                     
                 </div>
             </ValidationProvider>
-            
-            <button type="submit"  class="btn button  homeButton" style="margin: 0px !important">{{$t('Submit')}}</button>
-            <!-- <button  > <router-link to="/Login">{{$t('login')}}</router-link></button> -->
-
+           <SubmitButton/>
         </form>
     </ValidationObserver>
+    </div>
     <PageFooter/>
     </div>
 </template>
 
 <script>
 
-import Navbar from './navbar/navbar'   
+import Navbar from './navbar/LandingPage'   
 import PageFooter from './footer/pageFooter'
-import json from '../users.json'
+import SubmitButton from './SubmitButton/SubmitButton'
+
+import firebase from "../firebase";
+const db = firebase.firestore();
 
 export default {
     name:'Login',
     components:{
         Navbar,
-        PageFooter
+        PageFooter,
+        SubmitButton
     },
     props:{
         msg: String
@@ -54,32 +61,48 @@ export default {
             password:'',
             role: '',
             locale: 'en',
+            users:{}
         }
     },
     methods:{
         
      onSubmit(){
-        console.log(this.$store.state.user.role);
-            json.forEach(user => {
-                if(this.username == user["userName"] && this.password == user["password"])
+        db.collection("members")
+        .get()
+        .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            
+            this.users = doc.data()
+            if(this.username == this.users["username"] && this.password == this.users["password"])
                 {
-                    this.$store.state.user.role = user["role"]
+                    this.$store.state.user.role = this.users["role"]
+                    localStorage.setItem("role",this.users["role"])
                     this.$store.commit("logIn",true)
+                    console.log(this.users);
                 }
-            });
-            if(this.$store.state.user.loggedIn){
-                this.$router.push(this.$store.state.user.role); 
-                event.preventDefault()
-            } 
+            if(this.$store.state.user.loggedIn)
+                {
+                    
+                    this.$router.push(this.$store.state.user.role).catch(()=>{}); 
+                }
+           
+    });
+});
+
+
+             
           
             
         }
 
     }
+   
+    
 }
 </script>
 
-<style>
+<style scoped>
+
     .form-group span, .error {
         color: red;
     }
@@ -87,7 +110,5 @@ export default {
         width: 25%;
         margin-left: 37.5%;
     }
-    .buttton {
-        background-color: #7DCEA0;
-    }
+    
 </style>

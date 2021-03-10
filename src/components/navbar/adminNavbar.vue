@@ -12,8 +12,18 @@
                 </ul>
             </div>
             <languageSwitcher></languageSwitcher>
-            <button v-on:click = "logout" class="btn button ml-2"> <router-link to="/">{{$t('logout')}}</router-link></button>
-            <img src="../../assets/admin.png" alt="" style="width: 4    0px;">
+            <button 
+                v-on:click = "logout"
+                class="btn button ml-2"
+             > 
+                <router-link to="/">{{$t('logout')}}
+                </router-link>
+            </button>
+            <img 
+                src="../../assets/admin.png"
+                alt=""
+                style="width: 40px;"
+            >
             
         </nav>
         <router-view/>
@@ -25,7 +35,7 @@
 
 
 
-import languageSwitcher from '.././languageSwitcher'
+import languageSwitcher from '.././LanguageSwitcheButton/languageSwitcher'
 
 
 
@@ -37,7 +47,10 @@ export default {
     methods: {
         logout(){
             this.$store.commit("logOut")
-            console.log(this.$store.state.user.loggedIn)
+            if(localStorage.getItem("alreadyLogged")) {
+                this.$router.go()
+                localStorage.removeItem("alreadyLogged")
+            }
             
         }
     }

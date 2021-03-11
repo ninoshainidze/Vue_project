@@ -112,7 +112,7 @@
           </div>
         </div>
       </div>
-
+  <PageFooter/>
   </div>
 
 </template>
@@ -121,12 +121,14 @@
 
 import Navbar from '../../components/navbar/LandingPage'
 import userNavbar from '../../components/navbar/userNavbar'
+import PageFooter from '../../components/footer/pageFooter'
 
   export default {
     name:'about',
     components:{
       Navbar,
-      userNavbar
+      userNavbar,
+      PageFooter
     },
     data: function () {
       return{

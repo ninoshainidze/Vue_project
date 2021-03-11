@@ -63,6 +63,7 @@
           </div>
         </div>
       </div>
+      <PageFooter/>
     </div>
 </template>
 
@@ -70,13 +71,15 @@
 import SubmitButton from '../../components/SubmitButton/SubmitButton.vue'
 import Navbar from '../../components/navbar/LandingPage'
 import userNavbar from '../../components/navbar/userNavbar'
+import PageFooter from '../../components/footer/pageFooter'
 
   export default {
     name:'contact',
     components:{
       SubmitButton,
       Navbar,
-      userNavbar
+      userNavbar,
+      PageFooter
     },
     data: function () {
       return{

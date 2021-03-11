@@ -19,5 +19,8 @@ export default {
     height: 40px;
     width: 90px;
 }
+.Submit_buttom button:focus{
+        outline: none;
+    } 
    
 </style>

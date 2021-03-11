@@ -3,17 +3,17 @@
         <div  class="container">
             <h1>Add members</h1>
             <div v-if="!isEditing">
-                <input type="text" v-model="username">
-                <input type="text" v-model="password">
+                <input type="text" v-model="username" placeholder="Enter Username">
+                <input type="text" v-model="password" placeholder="Enter pasword">
                 <select  v-model="role">
                     <option disabled value="">Please select role</option>
                     <option value="user">user</option>
                     <option value="admin">admin</option>
                 </select>
-                <input type="submit" value="Add" v-on:click="storeTodo">
+                <input type="submit" style="width:100px;" value="Add" v-on:click="storeTodo">
             </div>
             <div v-else>
-                <input type="text" v-model="username">
+                <input type="text" v-model="username" >
                 <input type="text" v-model="password">
                 <select  v-model="role">
                     <option disabled value="">Please select role</option>
@@ -134,22 +134,42 @@ const db = firebase.firestore();
         max-width: 960px;
         margin: 0 auto;
     }
+    .container input, .container select{
+    background: #00bcd4;
+    border:0;
+    width: 200px;
+    height: 50px;
+    padding: 0 20px;
+    margin: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    /* color: #fff; */
+    }
+    .container select{
+        width: 260px;
+    }
+    .container input:focus{
+        outline: none;
+    } 
+    .container input::placeholder{
+        color: black;
+    }  
     h1 {
         padding-top: 40px;
     }
     table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
 </style>

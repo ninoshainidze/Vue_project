@@ -20,6 +20,9 @@ export default new Vuex.Store({
         getRole(state) {
             return state.role
         }
+        // getIsLogged(state){
+        //     return state.loggedIn
+        // }
         
     },
     mutations: {

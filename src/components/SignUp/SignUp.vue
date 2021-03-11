@@ -22,5 +22,9 @@ export default {
     margin-left: 10px;
     color: white;
 }
+.sign_up_button button:focus{
+    outline: none;
+
+}
    
 </style>

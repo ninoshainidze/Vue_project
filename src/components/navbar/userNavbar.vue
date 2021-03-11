@@ -23,8 +23,6 @@
             
                 </ul>
             </div>
-            
-            
             <languageSwitcher></languageSwitcher>
             <button v-on:click="logout" class="btn button ml-2"> <router-link to="/">{{$t('logout')}}</router-link></button>
             <img src="../../assets/user.png" alt="">
@@ -58,10 +56,17 @@ export default {
                 this.$router.go()
                 localStorage.removeItem("alreadyLogged")
             }
-            // console.log(this.$store.state.user.loggedIn)
+            console.log(this.$store.state.user.loggedIn)
             
         }
     }
+    // mounted() {
+    //     if(this.$store.getIsLogged == true){
+    //         console.log('true');
+    //     }else {
+    //         this.$router.push('/')
+    //     }
+    // }
 }
 </script>
 
@@ -70,11 +75,9 @@ export default {
    .navbar {
        overflow: hidden;
         background-color: transparent;
-        /* border-bottom: 1px solid #f7f7f7; */
         position: fixed;
         top: 0;
         width: 100%;
-        /* height: 100px; */
 }
     .navbar a{
         color: black;

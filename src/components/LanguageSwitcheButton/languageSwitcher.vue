@@ -42,5 +42,8 @@ export default {
         height: 40px;
         border: none;
     }
+    .language select:focus{
+      outline: none;
+    }
    
 </style>

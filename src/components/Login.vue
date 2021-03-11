@@ -65,39 +65,32 @@ export default {
         }
     },
     methods:{
+        onSubmit(){
+            db.collection("members")
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    this.users = doc.data()
+                    if(this.username == this.users["username"] && this.password == this.users["password"])
+                        {
+                            this.$store.state.user.role = this.users["role"]
+                            localStorage.setItem("role",this.users["role"])
+                            this.$store.commit("logIn",true)
+                            console.log(this.users);
+                        }
+                    if(this.$store.state.user.loggedIn)
+                        {
+                        
+                            this.$router.push(this.$store.state.user.role).catch(()=>{}); 
+                        }
+                
+                });
+            });
         
-     onSubmit(){
-        db.collection("members")
-        .get()
-        .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            
-            this.users = doc.data()
-            if(this.username == this.users["username"] && this.password == this.users["password"])
-                {
-                    this.$store.state.user.role = this.users["role"]
-                    localStorage.setItem("role",this.users["role"])
-                    this.$store.commit("logIn",true)
-                    console.log(this.users);
-                }
-            if(this.$store.state.user.loggedIn)
-                {
-                    
-                    this.$router.push(this.$store.state.user.role).catch(()=>{}); 
-                }
-           
-    });
-});
-
-
-             
-          
-            
         }
 
     }
-   
-    
+     
 }
 </script>
 

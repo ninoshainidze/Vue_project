@@ -4,11 +4,14 @@ import mainPage from './view/mainPage.vue'
 import Login from './components/Login'
 import About from './view/userComponents/About'
 import contact from './view/userComponents/contact'
+import OurService from './view/userComponents/OurService'
 import dashboard from './view/adminComponent/dashboard'
 import controlPanel from './view/adminComponent/controlPanel'
 import profile from './view/userComponents/profile'
-import userNavbar from './components/navbar/userNavbar'
-import adminNavbar from './components/navbar/adminNavbar'
+import UserContent from './view/navbar/UserContent'
+import GuestContent from './view/navbar/GuestContent'
+import AdminContent from './view/navbar/AdminContent'
+import SignUpForm from './components/SignUpForm/SignUpForm'
 import store from './store.js'
 
 Vue.use(router)
@@ -17,33 +20,26 @@ const VueRouter = new router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
-      {
-        path:'/',
-        name:'mainPage',
-        component:mainPage
-      },
-      {
-        path: '/about',
-        name: 'about',
-        component: About,
-      },
-      {
-        path: '/contact',
-        name: 'contact',
-        component: contact,
-      },
-      {
-        path: '/Login',
-        name: 'Login',
-        component: Login,
-      },
-      {
-        path: '/user', 
-        component: userNavbar,
+    {
+        path: '/', 
+        component: GuestContent,
             children: [
                 { path: '',component: mainPage },
                 { path: 'about',component: About },
                 { path: 'contact',component: contact },
+                { path: 'Login', name: 'Login',component: Login },
+                { path: 'SignUp', name: 'SignUp',component: SignUpForm }
+                
+            ],
+      },
+      {
+        path: '/user', 
+        component: UserContent,
+            children: [
+                { path: '',component: mainPage },
+                { path: 'about',component: About },
+                { path: 'contact',component: contact },
+                { path: 'OurService',component: OurService },
                 { path: 'profile',component: profile }
             ],
               beforeEnter:(to, from, next) =>{
@@ -60,7 +56,7 @@ const VueRouter = new router({
       },
       {
         path: '/admin', 
-        component: adminNavbar,
+        component: AdminContent,
             children: [
                 { path: '',component: dashboard },
                 { path: 'controlPanel',component: controlPanel }

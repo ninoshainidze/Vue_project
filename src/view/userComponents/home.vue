@@ -1,6 +1,5 @@
 <template>
   <div class="homePage">
-  <userNavbar/>
   <div style="margin-top: 100px;" class="ml-5">
     <b-card
       title="Card Title"
@@ -53,28 +52,21 @@
     </b-card>
   </div>
   
-   <PageFooter/>
   </div>
 </template>
 
 <script>
-import userNavbar from '../../components/navbar/userNavbar'
-import PageFooter from '../../components/footer/pageFooter'
   export default {
-    name:'home',
-    components:{
-      userNavbar,
-      PageFooter
-    }
+    name:'home'
   }
 </script>
 
 
-<style>
+<style  scoped>
+
   
  
 .homePage{
-  /* margin-top: 50px !important; */
   display: flex;
 }
  

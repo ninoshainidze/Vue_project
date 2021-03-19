@@ -1,11 +1,8 @@
 <template>
   <div>
     <router-view/>
-    <div v-if="spinnerStatus">
+     <div v-if="spinnerStatus">
       <Spinner/>
-    </div>
-    <div v-if="role != 'user' && role != 'admin'">
-      <Navbar/>
     </div>
     <div class="main_content">
       <div class="contaier">
@@ -155,14 +152,11 @@
         </div>
       </div>
       
-      <PageFooter/>
   </div>
 </template>
 
 <script>
 
-import Navbar from '.././components/navbar/LandingPage'
-import PageFooter from  '.././components/footer/pageFooter'
 import carousel from 'vue-owl-carousel'
 import Spinner from '../components/spinner/spinner'
 
@@ -170,8 +164,6 @@ import Spinner from '../components/spinner/spinner'
     name:'mainPage',
     components:{
       carousel,
-      PageFooter,
-      Navbar,
       Spinner
     },
     data: function () {
@@ -181,7 +173,7 @@ import Spinner from '../components/spinner/spinner'
       }
     },
     mounted(){
-      setTimeout(() => this.spinnerStatus = false, 2000);
+      setTimeout(() => this.spinnerStatus = false, 1000);
     }
     
   }

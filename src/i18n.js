@@ -5,9 +5,13 @@ Vue.use(VueI18n);
 
 const messages = {
   'en':{
+    Successfully_Registered: "Successful Reagistered",
     welcomeMassage: 'Welcome',
+    name:'name',
+    lastname:'lastname',
     username: 'username',
     password: 'password',
+    role:'role',
     Submit: 'submit',
     dashboard: 'dashboard',
     home: 'home',
@@ -21,14 +25,16 @@ const messages = {
     postyourideashere: 'post your ideas here',
     aboutHeader:'we are Ideas Goals',
     aboutUs:'On our company page you can post your ideas, projects and also contact your colleagues',
-    ourteam:'Our Team',
-    name:'Nino',
-    lastName:'Shainidze'
+    ourteam:'Our Team'
   },
   'ka':{
+    Successfully_Registered: "წარმატებული რეგისტრაცია",
     welcomeMassage: 'მოგესალმებით',
+    name:'სახელი',
+    lastname:'გვარი',
     username: 'მომხმარებლის სახელი',
     password: 'პაროლი',
+    role:'როლი',
     Submit: 'შესვლა',
     dashboard: 'სტატისტიკა',
     home: 'მთავარი',
@@ -42,13 +48,15 @@ const messages = {
     postyourideashere: 'განათავსე შენი იდეები აქ',
     aboutHeader:'ჩვენ ვართ Idea Goals',
     aboutUs:'ჩვენს კომპანიის გვერდზე შეგიძლიათ განათავსოთ თქვენი იდეები, პროექტები და ასევე დაუკავშირდეთ კოლეგებს ',
-    ourteam:'ჩვენი გუნდი',
-    name:'ნინო',
-    lastName:'შაინიძე'
+    ourteam:'ჩვენი გუნდი'
   },
   'ru':{
+    Successfully_Registered: "Успешно зарегистрирован ",
     welcomeMassage: 'добро пожаловать',
+    name:'имя',
+    lastname:'Фамилия',
     username: 'имя пользователя',
+    role:'роль',
     password: 'пароль',
     Submit: 'воити',
     dashboard: 'статистика',
@@ -63,9 +71,7 @@ const messages = {
     postyourideashere: 'Разместите здесь свои идеи',
     aboutHeader:'Мы Ideas Goals',
     aboutUs:'На странице нашей компании вы можете разместить свои идеи, проекты, а также связаться с коллегами.',
-    ourteam:'Наша команда',
-    name:'нино',
-    lastName:'шайнидзе'
+    ourteam:'Наша команда'
    
   },
 

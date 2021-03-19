@@ -1,11 +1,5 @@
 <template>
   <div class="about">
- <div v-if="role == 'user'">
-      <userNavbar/>
-    </div>
-    <div v-else>
-      <Navbar/>
-    </div>
     <div class="about_content">
       <div class="contaier">
         <div class="col-md-12 text-center">
@@ -112,24 +106,14 @@
           </div>
         </div>
       </div>
-  <PageFooter/>
   </div>
 
 </template>
 
 <script>
 
-import Navbar from '../../components/navbar/LandingPage'
-import userNavbar from '../../components/navbar/userNavbar'
-import PageFooter from '../../components/footer/pageFooter'
-
   export default {
     name:'about',
-    components:{
-      Navbar,
-      userNavbar,
-      PageFooter
-    },
     data: function () {
       return{
         role : localStorage.getItem("role")

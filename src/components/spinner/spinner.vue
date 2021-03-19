@@ -6,21 +6,21 @@
 
 <script>
 export default {
-    name:'spinner'
-}
+  name: "spinner",
+};
 </script>
 
 <style scoped>
-.preload{
-  display:flex;
+.preload {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: absolute;
   width: 100%;
   height: 100%;
-  background:white;
-  z-index:9999 ;
+  background: white;
+  z-index: 9999;
 }
 
 .lds-hourglass {
@@ -54,6 +54,4 @@ export default {
     transform: rotate(1800deg);
   }
 }
-
-
 </style>

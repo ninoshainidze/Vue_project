@@ -1,11 +1,5 @@
 <template>
     <div class="contact">
-      <div v-if="role == 'user'">
-      <userNavbar/>
-    </div>
-    <div v-else>
-      <Navbar/>
-    </div>
 <div class="contanct_content" >
       <div class="contaier">
         <div class="col-md-12 text-center">
@@ -28,7 +22,7 @@
                         <option value="usa">USA</option>
                       </select>
                       <textarea id="subject" name="subject" placeholder="Write something.." style="height:100"></textarea>
-                      <!-- <input type="submit" value="Submit"> --> <SubmitButton/>
+                      <button type="submit"  class="btn button  homeButton">{{$t('Submit')}}</button>
                     </form>
                   </div>
                   <div class="col-sm-6" >
@@ -63,31 +57,13 @@
           </div>
         </div>
       </div>
-      <PageFooter/>
     </div>
 </template>
 
 <script>
-import SubmitButton from '../../components/SubmitButton/SubmitButton.vue'
-import Navbar from '../../components/navbar/LandingPage'
-import userNavbar from '../../components/navbar/userNavbar'
-import PageFooter from '../../components/footer/pageFooter'
 
   export default {
-    name:'contact',
-    components:{
-      SubmitButton,
-      Navbar,
-      userNavbar,
-      PageFooter
-    },
-    data: function () {
-      return{
-        role : localStorage.getItem("role")
-        
-       
-      }
-    }
+    name:'contact'
   }
   
 </script>
@@ -136,6 +112,12 @@ input[type=submit]:hover {
   padding: 20px;
 }
 
-
+.contact_form button{
+    background: #00bcd4;
+    border:none !important;
+    border-radius: 50px;
+    height: 40px;
+    width: 90px;
+}
 
 </style>
